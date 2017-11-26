@@ -65,20 +65,6 @@ class Particle(numC: Int, d: Array[Array[Double]], numD:Int, numData: Long) exte
 		clusterCentroids = centroids;
 	}
 
-	def weightUpdate(inertia:Double) {
-		for(i <- 0 to numClusters-1){
-			for(j <- 0 to numDimensions-1){
-				vel(i)(j) = inertia*vel(i)(j) + Random.nextDouble()*1.49*(pbestWeightMat(i)(j) - weightMat(i)(j))
-				weightMat(i)(j) = vel(i)(j) + weightMat(i)(j)
-				if(weightMat(i)(j) > 1){
-					weightMat(i)(j) = 1;
-				}
-				if(weightMat(i)(j)<0){
-					weightMat(i)(j) = 0
-				}
-			}
-		}
-	}
 	def bestUpdate(){
 		if(fitnessVal > bestFitness){
 			bestFitness = fitnessVal;
